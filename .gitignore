@@ -1,0 +1,5 @@
+datasets/
+.venv/
+.env
+logs/
+evaluations/reports/
