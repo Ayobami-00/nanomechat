@@ -54,6 +54,13 @@ MEDIA_PATTERNS = [
     "video",
 ]
 
+# --- SUBSTRINGS TO STRIP FROM MESSAGES ---
+# Unlike system messages that filter entire messages, these substrings are removed
+# from message text while preserving the user's actual intent.
+SUBSTRINGS_TO_REMOVE = [
+    "<This message was edited>",
+]
+
 # --- PII MASKING PATTERNS (deterministic regex) ---
 PII_PATTERNS = {
     "CREDIT_CARD": r"\b(?:\d{4}[-\s]?){3}\d{4}\b",  # 16-digit card numbers
@@ -75,6 +82,13 @@ def is_too_short(message: str) -> bool:
     # Count only alphanumeric and space characters (excludes emojis)
     text_only = re.sub(r'[^a-zA-Z0-9\s]', '', message)
     return len(text_only.strip()) < MIN_MESSAGE_LENGTH
+
+
+def strip_substrings(message: str) -> str:
+    """Remove specific substrings from message text."""
+    for substring in SUBSTRINGS_TO_REMOVE:
+        message = message.replace(substring, "").strip()
+    return message
 
 
 def mask_pii(message: str) -> str:
@@ -150,6 +164,7 @@ def load_and_clean_chat_file(filepath: Path) -> List[dict]:
             if is_noise(message):
                 continue
             
+            message = strip_substrings(message)
             message = re.sub(r"\s+", " ", message).strip()
             if not message:
                 continue
