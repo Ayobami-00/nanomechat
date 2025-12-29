@@ -8,7 +8,7 @@ A personalized AI assistant that mirrors your tone across different chat persona
 - **[Day 1: Nanomechat: Fine‑Tuning Fundamentals 🎄](https://medium.com/@owumifestus/nanomechat-fine-tuning-fundamentals-day-1-2b00f09949d5)** - Fine-tuning fundamentals
 - **[Day 2: Nanomechat: The Mathematics & Training Process 🎄](https://medium.com/@owumifestus/nanomechat-the-mathematics-training-process-day-2-94063ab79716)** - Mathematics and training process
 - **[Day 3: Nanomechat: Evaluation Framework 🎄](https://medium.com/@owumifestus/nanomechat-evaluation-framework-day-3-2f6dcd8b411e)** - Evaluation framework
-- **Day 4** - Coming soon
+- **[Day 4: Nanomechat: Data Collection & Cleaning 🎄](https://medium.com/@owumifestus/nanomechat-data-collection-cleaning-day-4-4e1e5f66a1c7)** - Data collection and cleaning
 - **Day 5** - Coming soon
 - **Day 6** - Coming soon
 - **Day 7** - Coming soon
