@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLM Labelling Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .vlm-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .image-section {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .selection-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message-selector {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .selector-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .message-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .message-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .message-item:hover {
+            background: #f0f0f0;
+        }
+
+        .message-item.selected {
+            background: #e3f2fd;
+            border-left: 3px solid #2196F3;
+            padding-left: 7px;
+        }
+
+        .message-item-role {
+            font-size: 11px;
+            font-weight: bold;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .message-item-text {
+            color: #333;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        .load-more-btn {
+            padding: 8px 12px;
+            font-size: 12px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .load-more-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .custom-message-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .custom-message-toggle {
+            font-size: 12px;
+            color: #2196F3;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .custom-message-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .custom-message-input.active {
+            display: block;
+        }
+
+        .preview-section {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .preview-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .preview-messages {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .preview-message {
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .preview-message.user {
+            background: #e3f2fd;
+            border-left: 3px solid #2196F3;
+        }
+
+        .preview-message.image {
+            background: #f3e5f5;
+            border-left: 3px solid #9c27b0;
+        }
+
+        .preview-message.assistant {
+            background: #e8f5e9;
+            border-left: 3px solid #4caf50;
+        }
+
+        .preview-role {
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .preview-content {
+            color: #333;
+            word-break: break-word;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .button-group button {
+            flex: 1;
+        }
+
+        @media (max-width: 1400px) {
+            .vlm-main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="labeler-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>VLM Labelling Dashboard</h1>
+                <div class="header-info">
+                    <span class="badge">VLM</span>
+                    <span class="badge">{{ persona|upper }}</span>
+                </div>
+            </div>
+            <form method="POST" action="{{ url_for('logout') }}" style="display: inline;">
+                <button type="submit" class="btn btn-sm btn-secondary">Logout</button>
+            </form>
+        </header>
+
+        <!-- Main Content -->
+        <div class="labeler-content">
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressText">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Main Layout: Image + Message Selection -->
+            <div class="vlm-main">
+                <!-- Image Display -->
+                <div class="image-section">
+                    <img id="imageDisplay" src="" alt="Loading image..." style="display: none;">
+                    <p id="imageLoading">Loading image...</p>
+                </div>
+
+                <!-- Message Selection -->
+                <div class="selection-section">
+                    <!-- User Message Selector -->
+                    <div class="message-selector">
+                        <div class="selector-title">Select User Message</div>
+                        <div class="message-list" id="userMessageList">
+                            <p style="color: #999; padding: 10px;">Loading messages...</p>
+                        </div>
+                        <div class="custom-message-section">
+                            <span class="custom-message-toggle" onclick="toggleCustomUserMessage()">+ Add Custom Message</span>
+                            <textarea id="customUserMessage" class="custom-message-input" placeholder="Enter custom user message..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Assistant Reply Selector -->
+                    <div class="message-selector">
+                        <div class="selector-title">Select Assistant Reply</div>
+                        <div class="message-list" id="assistantMessageList">
+                            <p style="color: #999; padding: 10px;">Loading messages...</p>
+                        </div>
+                        <div class="custom-message-section">
+                            <span class="custom-message-toggle" onclick="toggleCustomAssistantMessage()">+ Add Custom Message</span>
+                            <textarea id="customAssistantMessage" class="custom-message-input" placeholder="Enter custom assistant message..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Example Preview -->
+            <div class="preview-section">
+                <div class="preview-title">Training Example Preview</div>
+                <div class="preview-messages" id="examplePreview">
+                    <p style="color: #999;">Select user message and assistant reply to preview</p>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-section">
+                <div class="keyboard-shortcuts">
+                    <p><strong>Keyboard Shortcuts:</strong></p>
+                    <ul>
+                        <li><kbd>Enter</kbd> - Accept and save example</li>
+                        <li><kbd>S</kbd> - Skip image</li>
+                        <li><kbd>U</kbd> - Undo last example</li>
+                    </ul>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-success" id="acceptBtn" onclick="acceptExample()">
+                        Accept & Save (Enter)
+                    </button>
+                    <button class="btn btn-secondary" id="skipBtn" onclick="skipImage()">
+                        Skip (S)
+                    </button>
+                    <button class="btn btn-warning" id="undoBtn" onclick="undoExample()">
+                        Undo (U)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-section">
+                <div class="stat">
+                    <span class="stat-label">Labeled Examples:</span>
+                    <span class="stat-value" id="labeledCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Skipped:</span>
+                    <span class="stat-value" id="skippedCount">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='vlm_labeler.js') }}"></script>
+</body>
+</html>

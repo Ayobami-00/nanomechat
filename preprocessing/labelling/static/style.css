@@ -1,0 +1,475 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Login Page */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-box {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #667eea;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+/* Container & Cards */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.card h1 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Mode Selection */
+.mode-options {
+    margin: 30px 0;
+}
+
+.mode-option {
+    display: block;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.mode-option input {
+    display: none;
+}
+
+.mode-card {
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s;
+    background: #f9f9f9;
+}
+
+.mode-option input:checked + .mode-card {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.mode-card h3 {
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.mode-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #d0d0d0;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+.btn-warning {
+    background: #ff9800;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #f57c00;
+}
+
+.btn-success {
+    background: #4caf50;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #45a049;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+/* Error Messages */
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Labeler Page */
+.labeler-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+
+.header {
+    background: white;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content h1 {
+    color: #667eea;
+    margin-bottom: 8px;
+}
+
+.header-info {
+    display: flex;
+    gap: 10px;
+}
+
+.labeler-content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 40px auto;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Progress Section */
+.progress-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Message Section */
+.message-section {
+    margin-bottom: 30px;
+}
+
+.message-card {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.sender {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 16px;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #999;
+}
+
+.message-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    word-wrap: break-word;
+}
+
+/* Conversation Section */
+.conversation-section {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-section h3 {
+    color: #333;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.conversation-preview {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px;
+    background: #f9f9f9;
+}
+
+.empty-state {
+    color: #999;
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+}
+
+.conversation-message {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.conversation-message.user {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.conversation-message.assistant {
+    background: #f3e5f5;
+    color: #6a1b9a;
+}
+
+/* Controls Section */
+.controls-section {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-shortcuts {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.keyboard-shortcuts p {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.keyboard-shortcuts ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.keyboard-shortcuts li {
+    font-size: 13px;
+    color: #666;
+}
+
+kbd {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.button-group .btn {
+    margin: 0;
+    width: 100%;
+}
+
+/* Statistics Section */
+.stats-section {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: #667eea;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .labeler-content {
+        margin: 20px auto;
+    }
+
+    .button-group {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Persona</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Select Persona</h1>
+            <p class="subtitle">Choose which persona's conversations to label</p>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <form method="POST">
+                <div class="form-group">
+                    <label for="persona">Persona:</label>
+                    <input type="text" id="persona" name="persona" required autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">Start Labelling</button>
+            </form>
+            
+            <form method="POST" action="{{ url_for('select_mode') }}" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-secondary">Back</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

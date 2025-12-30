@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labelling Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="labeler-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>Labelling Dashboard</h1>
+                <div class="header-info">
+                    <span class="badge">{{ mode|upper }}</span>
+                    <span class="badge">{{ persona|upper }}</span>
+                </div>
+            </div>
+            <form method="POST" action="{{ url_for('logout') }}" style="display: inline;">
+                <button type="submit" class="btn btn-sm btn-secondary">Logout</button>
+            </form>
+        </header>
+
+        <!-- Main Content -->
+        <div class="labeler-content">
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressText">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Message Display -->
+            <div class="message-section">
+                <div class="message-card" id="messageCard">
+                    <div class="message-header">
+                        <span class="sender" id="senderName">-</span>
+                        <span class="timestamp" id="messageTime">-</span>
+                    </div>
+                    <div class="message-content" id="messageContent">
+                        Loading message...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversation Preview -->
+            <div class="conversation-section">
+                <h3>Current Conversation (<span id="convSize">0</span> messages)</h3>
+                <div class="conversation-preview" id="conversationPreview">
+                    <p class="empty-state">No messages in conversation yet</p>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-section">
+                <div class="keyboard-shortcuts">
+                    <p><strong>Keyboard Shortcuts:</strong></p>
+                    <ul>
+                        <li><kbd>A</kbd> - Add to conversation</li>
+                        <li><kbd>S</kbd> - Skip message</li>
+                        <li><kbd>U</kbd> - Undo</li>
+                        <li><kbd>E</kbd> - End conversation</li>
+                    </ul>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" id="addBtn" onclick="addToConversation()">
+                        Add to Conversation (A)
+                    </button>
+                    <button class="btn btn-secondary" id="skipBtn" onclick="skipMessage()">
+                        Skip (S)
+                    </button>
+                    <button class="btn btn-warning" id="undoBtn" onclick="undo()">
+                        Undo (U)
+                    </button>
+                    <button class="btn btn-success" id="endBtn" onclick="endConversation()">
+                        End Conversation (E)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-section">
+                <div class="stat">
+                    <span class="stat-label">Labeled Conversations:</span>
+                    <span class="stat-value" id="labeledCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Labeled Messages:</span>
+                    <span class="stat-value" id="labeledMessages">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='labeler.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Labelling Mode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Select Labelling Mode</h1>
+            <p class="subtitle">Choose how you want to label conversations</p>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <form method="POST">
+                <div class="mode-options">
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="manual" checked>
+                        <div class="mode-card">
+                            <h3>Core Dataset Labelling</h3>
+                            <p>Manually group messages into conversations</p>
+                        </div>
+                    </label>
+                    
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="vlm">
+                        <div class="mode-card">
+                            <h3>VLM Labelling</h3>
+                            <p>Label images with context and assistant responses</p>
+                        </div>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </form>
+            
+            <form method="POST" action="{{ url_for('logout') }}" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-secondary">Logout</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
