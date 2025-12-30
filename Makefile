@@ -3,6 +3,8 @@
 
 LABEL_PORT ?= 5000
 LABEL_PASSWORD ?= aaaaaaaaaa # <YOUR-LABEL-PASSWORD>
+LLM_ENDPOINT ?= <YOUR-LLM-ENDPOINT>
+LLM_MODEL ?= <YOUR-LLM-MODEL>
 EVAL_INPUT_DIR ?= datasets/core/chats_processed
 EVAL_OUTPUT_DIR ?= datasets/core/chats_evals
 TRAIN_OUTPUT_DIR ?= datasets/core/chats_train
