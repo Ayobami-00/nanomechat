@@ -41,8 +41,8 @@ SLEEP_START_HOUR = 0
 SLEEP_END_HOUR = 10
 
 # --- LLM CHUNKING CONFIG ---
-LLM_ENDPOINT = os.environ.get("LLM_ENDPOINT", "https://enhanced-accepted-jaybird.ngrok-free.app/api/chat")
-LLM_MODEL = os.environ.get("LLM_MODEL", "llama3:8b")
+LLM_ENDPOINT = os.environ.get("LLM_ENDPOINT")
+LLM_MODEL = os.environ.get("LLM_MODEL")
 
 # --- TEST MODE CONFIG ---
 TEST_MODE = False

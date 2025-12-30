@@ -3,3 +3,5 @@ datasets/
 .env
 logs/
 evaluations/reports/
+__pycache__/
+process.log
