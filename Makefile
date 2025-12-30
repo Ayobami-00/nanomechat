@@ -1,4 +1,4 @@
-.PHONY: help setup-core-datasets-dir clean-core-datasets clean clean-vlm process-core process-core-test combine-core processing-pipeline-core label-core
+.PHONY: help setup-core-datasets-dir clean-core-datasets clean process-core process-core-test combine-core processing-pipeline-core label-core
 
 
 LABEL_PORT ?= 5000
